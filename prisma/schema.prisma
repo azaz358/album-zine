@@ -25,22 +25,5 @@ model Submission {
   // Page screenshot stored as base64 string
   pageScreenshot String?  // Will store the canvas as a base64 image
   
-  // File paths for uploaded images
-  images      Image[]
-  
   @@map("submissions")
-}
-
-model Image {
-  id           String     @id @default(cuid())
-  filename     String
-  originalName String
-  path         String
-  mimeType     String
-  size         Int
-  submissionId String
-  submission   Submission @relation(fields: [submissionId], references: [id], onDelete: Cascade)
-  createdAt    DateTime   @default(now())
-  
-  @@map("images")
 }

@@ -23,10 +23,6 @@ export interface PageElement {
   fontFamily?: string;
 }
 
-export interface PageLayout {
-  elements: PageElement[];
-}
-
 export interface Submission extends Omit<FormData, 'yearReleased'> {
   id: string;
   yearReleased: number;

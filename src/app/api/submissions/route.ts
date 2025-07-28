@@ -67,7 +67,7 @@ export async function GET() {
         artist: true,
         yearReleased: true,
         createdAt: true,
-        pageLayout: true
+        pageScreenshot: true
       }
     });
 

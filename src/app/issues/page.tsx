@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { PageElement } from '@/types';
 
 interface Submission {
   id: string;
@@ -11,10 +10,7 @@ interface Submission {
   artist: string;
   yearReleased: number;
   createdAt: string;
-  pageLayout?: {
-    elements: PageElement[];
-    images: string[];
-  };
+  pageScreenshot?: string;
 }
 
 export default function Issues() {
