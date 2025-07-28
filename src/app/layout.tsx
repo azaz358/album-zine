@@ -11,7 +11,7 @@ const robotoMono = Roboto_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Album Zine | Share Your Favorite Albums',
+  title: 'a music zine for friends <3',
   description: 'A community platform for sharing album recommendations and creating beautiful album pages.',
 }
 
