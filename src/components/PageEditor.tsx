@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useRef, ChangeEvent } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { v4 as uuidv4 } from 'uuid';
@@ -11,10 +11,12 @@ interface PageEditorProps {
   pageElements: PageElement[];
   setPageElements: React.Dispatch<React.SetStateAction<PageElement[]>>;
   uploadedImages: string[];
+  onImageUpload: (imageUrl: string) => void;
 }
 
-function PageEditor({ pageElements, setPageElements, uploadedImages }: PageEditorProps) {
+function PageEditor({ pageElements, setPageElements, uploadedImages, onImageUpload }: PageEditorProps) {
   const [selectedElement, setSelectedElement] = useState<string | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   // Global click handler to deselect elements when clicking outside DropZone
   useEffect(() => {
@@ -138,6 +140,24 @@ function PageEditor({ pageElements, setPageElements, uploadedImages }: PageEdito
     });
   };
 
+  const handleImageUpload = async (event: ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+    if (!files || files.length === 0) return;
+
+    const file = files[0];
+    
+    // Create a local URL for preview
+    const imageUrl = URL.createObjectURL(file);
+    onImageUpload(imageUrl);
+
+    // TODO: In a real app, you'd upload to a server here
+    // For now, we're just using local object URLs
+  };
+
+  const handleUploadClick = () => {
+    fileInputRef.current?.click();
+  };
+
   const handleImageAdd = async (imageUrl: string, index: number) => {
     setSelectedElement(null);
     
@@ -166,11 +186,42 @@ function PageEditor({ pageElements, setPageElements, uploadedImages }: PageEdito
 
         {/* Instructions */}
         <ul className="list-disc list-inside space-y-1 mt-1 text-gray-600 text-sm mb-6">
-        <li>Click on available images below to add them to your page</li>
+        <li>Upload images below</li>
+        <li>Click on available images to add them to your page</li>
         <li>Click on empty space to create a text box</li>
         <li>Click on images or text to select them</li>
         <li>Drag and drop elements to move them around</li>
         </ul>
+
+        {/* Image Upload */}
+        <div className="mb-6">
+          <label className="block text-sm font-medium text-gray-700 mb-2 font-helvetica">
+            Upload Images
+          </label>
+          <div className="space-y-4">
+            <button
+              type="button"
+              onClick={handleUploadClick}
+              className="w-full border-2 border-dashed border-gray-300 rounded-lg p-6 text-center hover:border-blue-400 transition-colors"
+            >
+              <svg className="mx-auto h-12 w-12 text-gray-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 48 48">
+                <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+              <p className="text-gray-600 font-helvetica">
+                <span className="font-medium text-blue-600 hover:text-blue-500">Click to upload</span> or drag and drop
+              </p>
+              <p className="text-xs text-gray-500 font-helvetica">PNG, JPG, GIF up to 10MB</p>
+            </button>
+            
+            <input
+              ref={fileInputRef}
+              type="file"
+              className="hidden"
+              accept="image/*"
+              onChange={handleImageUpload}
+            />
+          </div>
+        </div>
         
         {/* Available Images */}
         {uploadedImages.length > 0 && (
@@ -195,6 +246,9 @@ function PageEditor({ pageElements, setPageElements, uploadedImages }: PageEdito
         )}
 
         {/* Page Editor Canvas */}
+        <div className="block text-sm font-medium text-gray-700 mb-2 font-helvetica">
+            Layout
+        </div>
         <DropZone
           pageElements={pageElements}
           setPageElements={setPageElements}

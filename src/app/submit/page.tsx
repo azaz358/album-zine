@@ -17,12 +17,14 @@ export default function Submit() {
     albumName: '',
     artist: '',
     yearReleased: '',
+    albumDescription: '',
   });
   
   const [uploadedImages, setUploadedImages] = useState<string[]>([]);
   const [pageElements, setPageElements] = useState<PageElement[]>([]);
   const [validationErrors, setValidationErrors] = useState<ValidationErrors>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleFormChange = (field: string, value: string) => {
     setFormData(prev => ({
@@ -88,7 +90,6 @@ export default function Submit() {
       });
 
       if (response.ok) {
-        alert('Submission successful!');
         // Reset form
         setFormData({
           firstName: '',
@@ -98,9 +99,11 @@ export default function Submit() {
           albumName: '',
           artist: '',
           yearReleased: '',
+          albumDescription: '',
         });
         setUploadedImages([]);
         setPageElements([]);
+        setIsSubmitted(true);
       } else {
         const errorData = await response.json();
         alert(`Error submitting form: ${errorData.error || 'Unknown error'}`);
@@ -119,33 +122,49 @@ export default function Submit() {
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Submit Your Album</h1>
           <p className="text-gray-600 mt-4">
-            Share an album or mix and create a zine page layout for it.
-            <ol className="list-decimal list-inside leading-relaxed mt-4">
-              <li>
-                Only submit once per month. If you submit more than once, only your 
-                most recent submission will be included.
-              </li>
-              <li>
-                This zine is designed for people to share music in a genuine, emotional 
-                way that encourages deep listening. To this end, each recommendation should 
-                have been released more than 3 months ago. We encourage 
-                sharing what you love about the album, memories associated with it, etc.
-              </li>
-            </ol>
+            This zine is designed for sharing music in a genuine, emotional 
+            way. To combat the discovery-driven, contextless way in which streaming services
+            often present music, each recommendation should be at least 3 months old. We encourage 
+            sharing what you love about the album, memories associated with it, mini history lessons about the artist,
+            whatever floats your boat!
+          </p>
+          <p className="text-gray-600 mt-4">
+            If you submit more than once before the month&apos;s deadline, only your most recent submission will be included.
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-8">
-          {/* Left Column - Form */}
-          <div className="space-y-6">
+        <div className="space-y-8">
+          {/* Form or Success Message */}
+          {isSubmitted ? (
+            <div className="bg-green-50 border border-green-200 rounded-lg p-8 text-center">
+              <div className="mx-auto w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-4">
+                <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                </svg>
+              </div>
+              <h2 className="text-2xl font-bold text-green-800 mb-2">Submission Successful!</h2>
+              <p className="text-green-700 font-helvetica">
+                Thank you for your recommendation! Stay tuned for the next zine.
+              </p>
+            </div>
+          ) : (
             <SubmissionForm
               formData={formData}
               onFormChange={handleFormChange}
-              onImageUpload={handleImageUpload}
-              uploadedImages={uploadedImages}
               validationErrors={validationErrors}
             />
-            
+          )}
+          
+          {/* Page Editor */}
+          {/* <PageEditor
+            pageElements={pageElements}
+            setPageElements={setPageElements}
+            uploadedImages={uploadedImages}
+            onImageUpload={handleImageUpload}
+          /> */}
+          
+          {/* Submit Button */}
+          {!isSubmitted && (
             <button
               onClick={handleSubmit}
               disabled={isSubmitting}
@@ -153,16 +172,7 @@ export default function Submit() {
             >
               {isSubmitting ? 'Submitting...' : 'Submit Recommendation'}
             </button>
-          </div>
-
-          {/* Right Column - Page Editor */}
-          <div className="lg:sticky lg:top-8">
-            <PageEditor
-              pageElements={pageElements}
-              setPageElements={setPageElements}
-              uploadedImages={uploadedImages}
-            />
-          </div>
+          )}
         </div>
       </div>
     </div>

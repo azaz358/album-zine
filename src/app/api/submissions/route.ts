@@ -6,10 +6,10 @@ const prisma = new PrismaClient();
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { firstName, lastInitial, email, mailingAddress, albumName, artist, yearReleased, pageScreenshot } = body;
+    const { firstName, lastInitial, email, mailingAddress, albumName, artist, yearReleased, albumDescription, pageScreenshot } = body;
 
     // Validate required fields
-    if (!firstName || !lastInitial || !email || !mailingAddress || !albumName || !artist || !yearReleased) {
+    if (!firstName || !lastInitial || !email || !mailingAddress || !albumName || !artist || !yearReleased || !albumDescription) {
       return NextResponse.json(
         { error: 'Missing required fields' },
         { status: 400 }
@@ -26,6 +26,7 @@ export async function POST(request: NextRequest) {
         albumName,
         artist,
         yearReleased: parseInt(yearReleased),
+        albumDescription,
         pageScreenshot: pageScreenshot || null,
       },
     });
@@ -41,6 +42,7 @@ export async function POST(request: NextRequest) {
         albumName: submission.albumName,
         artist: submission.artist,
         yearReleased: submission.yearReleased,
+        albumDescription: submission.albumDescription,
         createdAt: submission.createdAt
       }
     });
@@ -66,6 +68,7 @@ export async function GET() {
         albumName: true,
         artist: true,
         yearReleased: true,
+        albumDescription: true,
         createdAt: true,
         pageScreenshot: true
       }

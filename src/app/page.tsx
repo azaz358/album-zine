@@ -24,7 +24,7 @@ export default function Home() {
           {showAbout && (
             <div className="p-8 mx-auto max-w-3xl text-center opacity-0 animate-fade-in">
               <p className="text-gray-800 mb-12 leading-relaxed">
-                This tool is intended for friends to share albums and mixes with each other. 
+                This tool is intended for friends to share albums with each other. 
                 Submissions are due on the 15th of every month, and zines will be distributed 
                 to each address during the first week of the next month.
               </p>

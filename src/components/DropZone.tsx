@@ -44,7 +44,7 @@ export default function DropZone({
   handleEditorClick
 }: DropZoneProps) {
   const editorRef = useRef<HTMLDivElement>(null);
-  const aspectRatio = 5.5 / 8.5;
+  const aspectRatio = 5.5 / 6.5;
 
   const [{ isOver }, drop] = useDrop({
     accept: [ItemTypes.IMAGE, ItemTypes.TEXT],
@@ -101,7 +101,11 @@ export default function DropZone({
   });
 
   return (
-    <div id="page-editor-canvas" className="border border-gray-300 bg-white rounded-lg overflow-hidden">
+    <div 
+      id="page-editor-canvas" 
+      className="border border-gray-300 bg-white rounded-lg overflow-hidden"
+      style={{ maxWidth: '600px' }}
+    >
       <div
         ref={(node) => {
           editorRef.current = node;
@@ -111,7 +115,6 @@ export default function DropZone({
         style={{
           width: '100%',
           paddingTop: `${(1 / aspectRatio) * 100}%`,
-          minHeight: '500px'
         }}
         onClick={handleEditorClick}
       >

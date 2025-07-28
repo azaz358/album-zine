@@ -19,6 +19,7 @@ model Submission {
   albumName     String
   artist        String
   yearReleased  Int
+  albumDescription String @default("")
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
   

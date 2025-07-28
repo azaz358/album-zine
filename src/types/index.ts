@@ -6,6 +6,7 @@ export interface FormData {
   albumName: string;
   artist: string;
   yearReleased: string;
+  albumDescription: string;
 }
 
 export interface PageElement {
