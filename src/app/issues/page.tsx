@@ -14,7 +14,7 @@ interface Submission {
 }
 
 export default function Issues() {
-  <div>
+  <div className="bg-blue-100">
     Hello world!
   </div>
 } 

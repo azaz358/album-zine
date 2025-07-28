@@ -15,7 +15,7 @@ interface SubmissionFormProps {
 // Helper component for field errors
 function FieldError({ error }: { error?: string }) {
   if (!error) return null;
-  return <p className="text-red-600 text-sm mt-1">{error}</p>;
+  return <p className="text-red-600 text-sm mt-1 font-helvetica">{error}</p>;
 }
 
 export default function SubmissionForm({
@@ -57,7 +57,7 @@ export default function SubmissionForm({
       {/* Personal Information */}
       <div className="grid grid-cols-2 gap-4">
         <div>
-          <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2">
+          <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 mb-2 font-helvetica">
             First Name
           </label>
           <input
@@ -65,7 +65,7 @@ export default function SubmissionForm({
             id="firstName"
             value={formData.firstName}
             onChange={(e) => onFormChange('firstName', e.target.value)}
-            className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black ${
+            className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black placeholder:font-helvetica ${
               validationErrors.firstName ? 'border-red-300' : 'border-gray-300'
             }`}
             placeholder="Your first name"
@@ -73,7 +73,7 @@ export default function SubmissionForm({
           <FieldError error={validationErrors.firstName} />
         </div>
         <div>
-          <label htmlFor="lastInitial" className="block text-sm font-medium text-gray-700 mb-2">
+          <label htmlFor="lastInitial" className="block text-sm font-medium text-gray-700 mb-2 font-helvetica">
             Last Initial
           </label>
           <input
@@ -81,7 +81,7 @@ export default function SubmissionForm({
             id="lastInitial"
             value={formData.lastInitial}
             onChange={(e) => onFormChange('lastInitial', e.target.value.slice(0, 1).toUpperCase())}
-            className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black ${
+            className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black placeholder:font-helvetica ${
               validationErrors.lastInitial ? 'border-red-300' : 'border-gray-300'
             }`}
             placeholder="X"
@@ -92,7 +92,7 @@ export default function SubmissionForm({
       </div>
 
       <div>
-        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
+        <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2 font-helvetica">
           Email Address
         </label>
         <input
@@ -100,7 +100,7 @@ export default function SubmissionForm({
           id="email"
           value={formData.email}
           onChange={(e) => onFormChange('email', e.target.value)}
-          className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black ${
+          className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black placeholder:font-helvetica ${
             validationErrors.email ? 'border-red-300' : 'border-gray-300'
           }`}
           placeholder="your.email@example.com"
@@ -109,14 +109,14 @@ export default function SubmissionForm({
       </div>
 
       <div>
-        <label htmlFor="mailingAddress" className="block text-sm font-medium text-gray-700 mb-2">
+        <label htmlFor="mailingAddress" className="block text-sm font-medium text-gray-700 mb-2 font-helvetica">
           Mailing Address
         </label>
         <textarea
           id="mailingAddress"
           value={formData.mailingAddress}
           onChange={(e) => onFormChange('mailingAddress', e.target.value)}
-          className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black ${
+          className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black placeholder:font-helvetica ${
             validationErrors.mailingAddress ? 'border-red-300' : 'border-gray-300'
           }`}
           placeholder="123 Main Street, Anytown, CA 90210"
@@ -127,7 +127,7 @@ export default function SubmissionForm({
 
       {/* Album Information */}
       <div>
-        <label htmlFor="albumName" className="block text-sm font-medium text-gray-700 mb-2">
+        <label htmlFor="albumName" className="block text-sm font-medium text-gray-700 mb-2 font-helvetica">
           Album Name
         </label>
         <input
@@ -135,7 +135,7 @@ export default function SubmissionForm({
           id="albumName"
           value={formData.albumName}
           onChange={(e) => onFormChange('albumName', e.target.value)}
-          className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black ${
+          className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black placeholder:font-helvetica ${
             validationErrors.albumName ? 'border-red-300' : 'border-gray-300'
           }`}
           placeholder="Enter album name"
@@ -144,7 +144,7 @@ export default function SubmissionForm({
       </div>
 
       <div>
-        <label htmlFor="artist" className="block text-sm font-medium text-gray-700 mb-2">
+        <label htmlFor="artist" className="block text-sm font-medium text-gray-700 mb-2 font-helvetica">
           Artist
         </label>
         <input
@@ -152,7 +152,7 @@ export default function SubmissionForm({
           id="artist"
           value={formData.artist}
           onChange={(e) => onFormChange('artist', e.target.value)}
-          className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black ${
+          className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black placeholder:font-helvetica ${
             validationErrors.artist ? 'border-red-300' : 'border-gray-300'
           }`}
           placeholder="Enter artist name"
@@ -161,7 +161,7 @@ export default function SubmissionForm({
       </div>
 
       <div>
-        <label htmlFor="yearReleased" className="block text-sm font-medium text-gray-700 mb-2">
+        <label htmlFor="yearReleased" className="block text-sm font-medium text-gray-700 mb-2 font-helvetica">
           Year Released
         </label>
         <input
@@ -169,7 +169,7 @@ export default function SubmissionForm({
           id="yearReleased"
           value={formData.yearReleased}
           onChange={(e) => onFormChange('yearReleased', e.target.value)}
-          className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black ${
+          className={`w-full px-3 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-black placeholder:font-helvetica ${
             validationErrors.yearReleased ? 'border-red-300' : 'border-gray-300'
           }`}
           placeholder={new Date().getFullYear().toString()}
@@ -181,7 +181,7 @@ export default function SubmissionForm({
 
       {/* Image Upload */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-2">
+        <label className="block text-sm font-medium text-gray-700 mb-2 font-helvetica">
           Images
         </label>
         <div className="space-y-4">
@@ -193,10 +193,10 @@ export default function SubmissionForm({
             <svg className="mx-auto h-12 w-12 text-gray-400 mb-2" fill="none" stroke="currentColor" viewBox="0 0 48 48">
               <path d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            <p className="text-gray-600">
+            <p className="text-gray-600 font-helvetica">
               <span className="font-medium text-blue-600 hover:text-blue-500">Click to upload</span> or drag and drop
             </p>
-            <p className="text-xs text-gray-500">PNG, JPG, GIF up to 10MB</p>
+            <p className="text-xs text-gray-500 font-helvetica">PNG, JPG, GIF up to 10MB</p>
           </button>
           
           <input

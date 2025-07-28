@@ -165,15 +165,12 @@ function PageEditor({ pageElements, setPageElements, uploadedImages }: PageEdito
         </div>
 
         {/* Instructions */}
-        <div className="mt-4 text-sm text-gray-600 bg-gray-50 p-3 rounded mb-6">
-          <p><strong>Instructions:</strong></p>
-          <ul className="list-disc list-inside space-y-1 mt-1">
-            <li>Click on available images below to add them to your page</li>
-            <li>Click on empty space to create a text box</li>
-            <li>Click on images or text to select them</li>
-            <li>Drag and drop elements to move them around</li>
-          </ul>
-        </div>
+        <ul className="list-disc list-inside space-y-1 mt-1 text-gray-600 text-sm mb-6">
+        <li>Click on available images below to add them to your page</li>
+        <li>Click on empty space to create a text box</li>
+        <li>Click on images or text to select them</li>
+        <li>Drag and drop elements to move them around</li>
+        </ul>
         
         {/* Available Images */}
         {uploadedImages.length > 0 && (

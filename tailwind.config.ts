@@ -11,6 +11,7 @@ export default {
       fontFamily: {
         mono: ['var(--font-roboto-mono)', 'ui-monospace', 'monospace'],
         sans: ['var(--font-roboto-mono)', 'ui-monospace', 'monospace'],
+        helvetica: ['Helvetica', 'Arial', 'sans-serif'],
       },
       colors: {
         background: "var(--background)",

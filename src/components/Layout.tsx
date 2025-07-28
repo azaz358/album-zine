@@ -20,7 +20,6 @@ export default function Layout({ children }: LayoutProps) {
   const navItems = [
     { href: '/', label: 'Home', exact: true },
     { href: '/submit', label: 'Submit' },
-    { href: '/issues', label: 'Previous Issues' },
   ];
 
   const isActive = (href: string, exact?: boolean) => {
@@ -33,11 +32,12 @@ export default function Layout({ children }: LayoutProps) {
   return (
     <div className="min-h-screen bg-gray-50">
       {/* Header */}
-      <header className="bg-white shadow-sm border-b border-gray-200">
+      <header className="bg-blue-100 shadow-sm border-b border-gray-200">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16">
+          <div className="relative h-16">
             
-            <nav className="hidden md:flex space-x-8">
+            {/* Desktop Navigation - Full Width */}
+            <nav className="hidden md:flex justify-evenly items-center h-full w-full">
               {navItems.map((item) => (
                 <Link
                   key={item.href}
@@ -54,7 +54,7 @@ export default function Layout({ children }: LayoutProps) {
             </nav>
 
             {/* Mobile menu button */}
-            <div className="md:hidden">
+            <div className="md:hidden absolute right-0 top-1/2 transform -translate-y-1/2">
               <button
                 type="button"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}

@@ -114,12 +114,24 @@ export default function Submit() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-8">
+    <div className="min-h-screen bg-blue-100 py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">Submit Your Album</h1>
-          <p className="text-gray-600">
-            Share your favorite album and create a beautiful page layout for it.
+          <p className="text-gray-600 mt-4">
+            Share an album or mix and create a zine page layout for it.
+            <ol className="list-decimal list-inside leading-relaxed mt-4">
+              <li>
+                Only submit once per month. If you submit more than once, only your 
+                most recent submission will be included.
+              </li>
+              <li>
+                This zine is designed for people to share music in a genuine, emotional 
+                way that encourages deep listening. To this end, each recommendation should 
+                have been released more than 3 months ago. We encourage 
+                sharing what you love about the album, memories associated with it, etc.
+              </li>
+            </ol>
           </p>
         </div>
 

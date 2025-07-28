@@ -169,7 +169,7 @@ export default function TextElement({
             onChange={handleTextChange}
             onBlur={handleTextBlur}
             onKeyDown={handleKeyDown}
-            className="w-full h-full p-2 border-0 bg-transparent resize-none outline-none text-black"
+            className="w-full h-full p-2 border-0 bg-transparent resize-none outline-none text-black placeholder:font-helvetica"
             style={{
               fontSize: element.fontSize || 14,
               fontFamily: element.fontFamily || 'Helvetica, Arial, sans-serif',
